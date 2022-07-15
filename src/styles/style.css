@@ -28,24 +28,16 @@ textarea::placeholder {
 }
 
 .notes-list-container {
-  /*
-   display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: minmax(min-content, max-content);
+  grid-template-columns: repeat(4, 1fr);
+  display: grid;
   gap: 16px;
-  margin-bottom: 48px;
-   */
-
   margin-top: 20px;
-  justify-content: space-between;
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
 }
 
 .notes-list__empty-message {
   text-align: center;
   color: #aaa;
+  margin-top: 100px;
 }
 
 .note-item {
@@ -54,7 +46,7 @@ textarea::placeholder {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  max-width: 22%;
+  /* max-width: 22%; */
 }
 
 .note-item__content {
@@ -137,6 +129,10 @@ textarea::placeholder {
 
 /* -------------------------- LIST NOTES RESPONSIVE ------------------------- */
 @media (max-width: 885px) {
+  .notes-list-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
   .note-item {
     max-width: 48%;
   }

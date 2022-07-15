@@ -19,14 +19,8 @@ class MainPage extends React.Component {
     };
 
     this.onSearchNotes = this.onSearchNotes.bind(this);
-    this.onDeleteHandler = this.onDeleteHandler.bind(this);
     this.onArchived = this.onArchived.bind(this);
     this.onUndoArchived = this.onUndoArchived.bind(this);
-  }
-
-  onDeleteHandler(id) {
-    const notes = this.state.notes.filter((note) => note.id !== id);
-    this.setState({ notes });
   }
 
   onArchived(id) {
@@ -39,7 +33,9 @@ class MainPage extends React.Component {
       newData.push(note);
     });
 
-    this.setState({ notes: newData });
+    this.setState({
+      notes: newData,
+    });
   }
 
   onUndoArchived(id) {
@@ -52,7 +48,9 @@ class MainPage extends React.Component {
       newData.push(note);
     });
 
-    this.setState({ notes: newData });
+    this.setState({
+      notes: newData,
+    });
   }
 
   onSearchNotes(term) {
