@@ -3,6 +3,11 @@
   margin-top: 40px;
 }
 
+.header-form {
+  display: flex;
+  justify-content: space-between;
+}
+
 .notes-form-container form {
   display: flex;
   flex-direction: column;
