@@ -19,10 +19,21 @@ class MainPage extends React.Component {
     };
 
     // Bind function
+    this.onDeleteNotes = this.onDeleteNotes.bind(this);
     this.onSearchNotes = this.onSearchNotes.bind(this);
     this.onArchived = this.onArchived.bind(this);
     this.onUndoArchived = this.onUndoArchived.bind(this);
     this.onAddNote = this.onAddNote.bind(this);
+  }
+
+  // Funtion for set Archived note
+  onDeleteNotes(id) {
+    const newData = this.state.notes.filter((note) => note.id !== id);
+    this.setState(() => {
+      return {
+        notes: newData,
+      };
+    });
   }
 
   // Funtion for set Archived note
@@ -94,12 +105,14 @@ class MainPage extends React.Component {
           searchTerm={this.state.searchTerm}
           dateFormat={showFormattedDate}
           onArchived={this.onArchived}
+          onDeleteNotes={this.onDeleteNotes}
         />
         <ListArchive
           notes={this.state.notes}
           searchTerm={this.state.searchTerm}
           dateFormat={showFormattedDate}
           onUndoArchived={this.onUndoArchived}
+          onDeleteNotes={this.onDeleteNotes}
         />
       </>
     );
