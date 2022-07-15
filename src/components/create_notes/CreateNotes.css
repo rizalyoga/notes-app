@@ -15,4 +15,12 @@
 
 .submit-button {
   cursor: pointer;
+  transition: 0.2s;
+  outline: none;
+}
+
+.submit-button:hover {
+  background: #fff;
+  color: #252839;
+  font-weight: bold;
 }

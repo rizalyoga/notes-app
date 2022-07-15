@@ -8,13 +8,13 @@ class ListNotes extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      notes: props.notes,
       dateFormat: props.dateFormat,
     };
 
     this.onDeleteHandler = this.onDeleteHandler.bind(this);
   }
 
+  // Function for delete note
   onDeleteHandler(id) {
     const newData = this.state.notes.filter((note) => note.id !== id);
     this.setState(() => {
@@ -25,14 +25,14 @@ class ListNotes extends React.Component {
   }
 
   render() {
-    const dataNotes = this.state.notes.filter(
+    const dataNotes = this.props.notes.filter(
       (note) =>
         !note.archived &&
         note.title.toLowerCase().includes(this.props.searchTerm.toLowerCase())
     );
     return (
       <div className="list-notes-container">
-        <h3>Catatan Aktif</h3>
+        <h3 className="component-title">Catatan Aktif</h3>
         {dataNotes.length < 1 && <EmptyData />}
         <div className="notes-list-container">
           {dataNotes.map((note) => (

@@ -5,6 +5,16 @@
   margin: 0 4%;
 }
 
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-container img {
+  width: 2rem;
+}
+
 .logo-container h1 {
   font-size: 1.3rem;
 }
@@ -12,5 +22,17 @@
 .underline {
   width: 100;
   height: 2px;
-  background: #fff;
+  background: #f6ee86;
+}
+
+@media (max-width: 430px) {
+  .logo-container h1 {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 370px) {
+  .logo-container h1 {
+    display: none;
+  }
 }

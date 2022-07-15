@@ -6,14 +6,18 @@ class CreateNotes extends React.Component {
     super(props);
     this.state = {
       title: "",
-      charLimit: 20,
+      body: "",
+      charLimit: 50,
     };
 
+    // Bind Function
     this.titleOnChange = this.titleOnChange.bind(this);
+    this.bodyOnChange = this.bodyOnChange.bind(this);
     this.onSubmitHandler = this.onSubmitHandler.bind(this);
     this.onAlert = this.onAlert.bind(this);
   }
 
+  // Handler for set title state when title field changes
   titleOnChange(event) {
     this.setState(() => {
       return {
@@ -22,25 +26,47 @@ class CreateNotes extends React.Component {
     });
   }
 
-  onSubmitHandler(e) {
-    e.preventDefault();
-    console.log("ini hasilsubmit :", this.state.title);
+  // Handler for set body state when body field changes
+  bodyOnChange(event) {
+    this.setState(() => {
+      return {
+        body: event.target.value,
+      };
+    });
   }
 
+  // Submit Handler
+  onSubmitHandler(e) {
+    e.preventDefault();
+
+    this.props.onAddNote(this.state.title, this.state.body);
+    this.setState(() => {
+      return {
+        title: "",
+        body: "",
+      };
+    });
+  }
+
+  // Funtion for show alert when character limit in title field pass
   onAlert() {
-    window.alert(
-      "Oops.. Karakter melebihi batas, Input Title terdisable. Silahkan reload web untuk memulai kembali."
-    );
+    window.alert("Oops.. Karakter melebihi batas. Silahkan mengisi ulang.");
+    this.setState(() => {
+      return {
+        title: "",
+      };
+    });
   }
 
   render() {
     if (this.state.charLimit - this.state.title.length <= 0) {
       this.onAlert();
     }
+
     return (
       <div className="notes-form-container">
         <div className="header-form">
-          <h3>Buat Catatan</h3>
+          <h3 className="component-title">Buat Catatan</h3>
           <p>
             Sisa Karakter : {this.state.charLimit - this.state.title.length}
           </p>
@@ -51,9 +77,7 @@ class CreateNotes extends React.Component {
             placeholder="Ini adalah judul..."
             value={this.state.title}
             onChange={this.titleOnChange}
-            disabled={
-              this.state.charLimit - this.state.title.length <= 0 ? true : false
-            }
+            required
           />
           <textarea
             name="notes"
@@ -61,8 +85,11 @@ class CreateNotes extends React.Component {
             cols="30"
             rows="10"
             placeholder="Tuliskan catatanya disini..."
+            value={this.state.body}
+            onChange={this.bodyOnChange}
+            required
           />
-          <input className="submit-button" type="submit" value="Buat" />
+          <input className="submit-button" type="submit" value="Buat Catatan" />
         </form>
       </div>
     );

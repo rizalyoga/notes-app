@@ -27,6 +27,10 @@ textarea::placeholder {
   font-weight: bold;
 }
 
+.component-title {
+  color: #a2ddfd;
+}
+
 .notes-list-container {
   grid-template-columns: repeat(4, 1fr);
   display: grid;
@@ -37,7 +41,7 @@ textarea::placeholder {
 .notes-list__empty-message {
   text-align: center;
   color: #aaa;
-  margin-top: 100px;
+  margin-top: 50px;
 }
 
 .note-item {
@@ -47,6 +51,7 @@ textarea::placeholder {
   display: flex;
   flex-direction: column;
   /* max-width: 22%; */
+  min-height: 250px;
 }
 
 .note-item__content {
@@ -59,6 +64,7 @@ textarea::placeholder {
   overflow: hidden;
   white-space: nowrap;
   margin-bottom: 4px;
+  color: #f6ee86;
 }
 
 .note-item__date {
@@ -90,19 +96,21 @@ textarea::placeholder {
 
 .note-item__delete-button {
   border-right: 1px solid #aaa;
-  color: #ff5f52;
+  color: #f859c3;
+  transition: 0.2s;
 }
 
 .note-item__archive-button {
   color: #fff263;
+  transition: 0.2s;
 }
 
 .note-item__archive-button:hover {
-  color: #c49000;
+  color: #95f14a;
 }
 
 .note-item__delete-button:hover {
-  color: #b00020;
+  color: #f80c0c;
 }
 
 @media only screen and (min-width: 500px) {
@@ -128,6 +136,12 @@ textarea::placeholder {
 }
 
 /* -------------------------- LIST NOTES RESPONSIVE ------------------------- */
+@media (max-width: 1110px) {
+  .notes-list-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 @media (max-width: 885px) {
   .notes-list-container {
     display: flex;
@@ -141,5 +155,12 @@ textarea::placeholder {
 @media (max-width: 532px) {
   .note-item {
     max-width: 100%;
+  }
+
+  .list-notes-container,
+  .notes-form-container {
+    margin: 0 8%;
+    margin-top: 30px;
+    margin-bottom: 20px;
   }
 }
