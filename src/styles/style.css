@@ -52,6 +52,7 @@ textarea::placeholder {
   flex-direction: column;
   /* max-width: 22%; */
   min-height: 250px;
+  margin-bottom: 10px;
 }
 
 .note-item__content {
@@ -148,15 +149,17 @@ textarea::placeholder {
     flex-wrap: wrap;
   }
   .note-item {
-    max-width: 48%;
+    width: 48%;
+  }
+}
+
+@media (max-width: 560px) {
+  .note-item {
+    width: 100%;
   }
 }
 
 @media (max-width: 532px) {
-  .note-item {
-    max-width: 100%;
-  }
-
   .list-notes-container,
   .notes-form-container {
     margin: 0 8%;
