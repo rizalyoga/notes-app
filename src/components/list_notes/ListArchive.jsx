@@ -3,6 +3,7 @@ import "./ListNotes.css";
 
 // Component
 import EmptyData from "../empty_data/EmptyData";
+import NoteCard from "../cards/NoteCard";
 
 const ListArchive = ({
   notes,
@@ -23,29 +24,13 @@ const ListArchive = ({
       {dataNotes.length < 1 && <EmptyData />}
       <div className="notes-list-container">
         {dataNotes.map((note) => (
-          <div className="note-item" key={note.id}>
-            <div className="note-item__content">
-              <h5 className="note-item__title">{note.title}</h5>
-              <p className="note-item__date">{dateFormat(note.createdAt)}</p>
-              <div className="note-item__body">
-                <p>{note.body}</p>
-              </div>
-            </div>
-            <div className="note-item__action">
-              <button
-                className="note-item__delete-button"
-                onClick={() => onDeleteNotes(note.id)}
-              >
-                Delete
-              </button>
-              <button
-                className="note-item__archive-button"
-                onClick={() => onUndoArchived(note.id)}
-              >
-                UnArchive
-              </button>
-            </div>
-          </div>
+          <NoteCard
+            note={note}
+            dateFormat={dateFormat}
+            setArchived={onUndoArchived}
+            setTitleArchivedButton={"UnArchive"}
+            onDeleteNotes={onDeleteNotes}
+          />
         ))}
       </div>
     </div>
