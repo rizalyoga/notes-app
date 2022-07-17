@@ -29,6 +29,7 @@ const ListNotes = ({
             setArchived={onArchived}
             setTitleArchivedButton={"Archive"}
             onDeleteNotes={onDeleteNotes}
+            key={note.id}
           />
         ))}
       </div>

@@ -8,7 +8,7 @@ const NoteCard = ({
   setTitleArchivedButton,
 }) => {
   return (
-    <div className="note-item" key={note.id}>
+    <div className="note-item">
       <div className="note-item__content">
         <h5 className="note-item__title">{note.title}</h5>
         <p className="note-item__date">{dateFormat(note.createdAt)}</p>
