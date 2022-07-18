@@ -75,9 +75,8 @@ class MainPage extends React.Component {
       newData.push(note);
     });
 
-    this.setState({
-      notes: newData,
-    });
+    localStorage.setItem("notesData", JSON.stringify(newData));
+    this.onUpdateData();
   }
 
   // Funtion for set unArchived note
@@ -91,9 +90,8 @@ class MainPage extends React.Component {
       newData.push(note);
     });
 
-    this.setState({
-      notes: newData,
-    });
+    localStorage.setItem("notesData", JSON.stringify(newData));
+    this.onUpdateData();
   }
 
   // Funtion for set word of title note
@@ -119,6 +117,10 @@ class MainPage extends React.Component {
 
     notesData.push(newData);
 
+    localStorage.setItem("notesData", JSON.stringify(notesData));
+    this.onUpdateData();
+
+    // save data just in memmory
     // this.setState((prevState) => {
     //   return {
     //     notes: [
@@ -133,13 +135,9 @@ class MainPage extends React.Component {
     //     ],
     //   };
     // });
-
-    localStorage.setItem("notesData", JSON.stringify(notesData));
-    this.onUpdateData();
   }
 
   render() {
-    // console.log(this.state.notes);
     return (
       <>
         <Navbar onSearchNotes={this.onSearchNotes} />
