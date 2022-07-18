@@ -12,7 +12,7 @@ const ListArchive = ({
   onUndoArchived,
   onDeleteNotes,
 }) => {
-  const dataNotes = notes.filter(
+  const dataNotes = notes?.filter(
     (note) =>
       note.archived &&
       note.title.toLowerCase().includes(searchTerm.toLowerCase())
@@ -23,7 +23,7 @@ const ListArchive = ({
       <h3 className="component-title">Catatan Arsip</h3>
       {dataNotes.length < 1 && <EmptyData />}
       <div className="notes-list-container">
-        {dataNotes.map((note) => (
+        {dataNotes?.map((note) => (
           <NoteCard
             note={note}
             dateFormat={dateFormat}
