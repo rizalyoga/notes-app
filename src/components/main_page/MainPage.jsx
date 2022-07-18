@@ -7,14 +7,14 @@ import ListNotes from "../list_notes/ListNotes";
 import ListArchive from "../list_notes/ListArchive";
 
 // Data
-import { getInitialData, showFormattedDate } from "../../utils/index";
+import { showFormattedDate } from "../../utils/index";
 
 class MainPage extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      notes: getInitialData(),
+      notes: [],
       searchTerm: "",
     };
 
@@ -24,16 +24,44 @@ class MainPage extends React.Component {
     this.onArchived = this.onArchived.bind(this);
     this.onUndoArchived = this.onUndoArchived.bind(this);
     this.onAddNote = this.onAddNote.bind(this);
+    this.onUpdateData = this.onUpdateData.bind(this);
+  }
+
+  componentDidMount() {
+    const notesData = localStorage.getItem("notesData");
+
+    this.setState(() => {
+      if (notesData != null) {
+        return {
+          notes: JSON.parse(notesData),
+        };
+      } else {
+        return {
+          notes: [],
+        };
+      }
+    });
+  }
+
+  // UpdateData for every action
+  onUpdateData() {
+    const updateData = JSON.parse(localStorage.getItem("notesData"));
+
+    this.setState(() => {
+      return {
+        notes: updateData,
+      };
+    });
   }
 
   // Funtion for set Archived note
   onDeleteNotes(id) {
-    const newData = this.state.notes.filter((note) => note.id !== id);
-    this.setState(() => {
-      return {
-        notes: newData,
-      };
-    });
+    const dataFromStorage = JSON.parse(localStorage.getItem("notesData"));
+    const newData = dataFromStorage.filter((note) => note.id !== id);
+
+    localStorage.setItem("notesData", JSON.stringify(newData));
+
+    this.onUpdateData();
   }
 
   // Funtion for set Archived note
@@ -79,23 +107,39 @@ class MainPage extends React.Component {
 
   // Function for add Note
   onAddNote(titleNote, bodyNote) {
-    this.setState((prevState) => {
-      return {
-        notes: [
-          ...prevState.notes,
-          {
-            id: +new Date(),
-            title: titleNote,
-            body: bodyNote,
-            archived: false,
-            createdAt: new Date().toString(),
-          },
-        ],
-      };
-    });
+    let notesData = this.state.notes;
+
+    const newData = {
+      id: +new Date(),
+      title: titleNote,
+      body: bodyNote,
+      archived: false,
+      createdAt: new Date().toString(),
+    };
+
+    notesData.push(newData);
+
+    // this.setState((prevState) => {
+    //   return {
+    //     notes: [
+    //       ...prevState.notes,
+    //       {
+    //         id: +new Date(),
+    //         title: titleNote,
+    //         body: bodyNote,
+    //         archived: false,
+    //         createdAt: new Date().toString(),
+    //       },
+    //     ],
+    //   };
+    // });
+
+    localStorage.setItem("notesData", JSON.stringify(notesData));
+    this.onUpdateData();
   }
 
   render() {
+    // console.log(this.state.notes);
     return (
       <>
         <Navbar onSearchNotes={this.onSearchNotes} />
