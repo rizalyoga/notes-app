@@ -19,7 +19,7 @@ const ListArchive = ({
   );
 
   return (
-    <div className="list-notes-container">
+    <div className="list-notes-container list-archive">
       <h3 className="component-title">Catatan Arsip</h3>
       {dataNotes.length < 1 && <EmptyData />}
       <div className="notes-list-container">

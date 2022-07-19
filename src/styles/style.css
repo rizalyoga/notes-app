@@ -31,11 +31,40 @@ textarea::placeholder {
   color: #a2ddfd;
 }
 
+.create-note__button {
+  width: 100%;
+  padding: 20px 12%;
+  margin-top: 64px;
+  position: fixed;
+  background: #252839;
+  z-index: 20;
+}
+
+.create-note__button button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 100%;
+  padding: 10px;
+  outline: none;
+  cursor: pointer;
+}
+
+.create-note__add-icon {
+  font-size: 1.4rem;
+  color: #a2ddfd;
+}
+
 .notes-list-container {
   grid-template-columns: repeat(4, 1fr);
   display: grid;
   gap: 16px;
   margin-top: 20px;
+}
+
+.list-archive {
+  margin-top: 50px;
 }
 
 .notes-list__empty-message {
@@ -50,7 +79,6 @@ textarea::placeholder {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  /* max-width: 22%; */
   min-height: 250px;
   margin-bottom: 10px;
 }
@@ -58,14 +86,31 @@ textarea::placeholder {
 .note-item__content {
   padding: 12px;
   flex: 1;
+  overflow: hidden;
+}
+
+.note-item__title-container {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
 }
 
 .note-item__title {
-  text-overflow: ellipsis;
   overflow: hidden;
+  text-overflow: ellipsis;
   white-space: nowrap;
   margin-bottom: 4px;
   color: #f6ee86;
+}
+
+.note-item__menu-toggle {
+  cursor: pointer;
+  padding: 0 2px;
+  font-size: 1.4rem;
+}
+
+.note-item__menu-toggle:hover {
+  color: #b3dae0;
 }
 
 .note-item__date {
@@ -76,6 +121,10 @@ textarea::placeholder {
 
 .note-item__body {
   font-size: 14px;
+  display: -webkit-box;
+  -webkit-line-clamp: 8;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .note-item__action {
@@ -156,6 +205,19 @@ textarea::placeholder {
 @media (max-width: 560px) {
   .note-item {
     width: 100%;
+  }
+
+  .create-note__button {
+    padding: 20px 8%;
+    margin-top: 64px;
+  }
+
+  .list-notes-container {
+    margin-top: 180px !important;
+  }
+
+  .list-archive {
+    margin-top: 50px !important;
   }
 }
 

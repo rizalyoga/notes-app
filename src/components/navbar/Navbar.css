@@ -1,8 +1,15 @@
 .navbar-container {
+  top: 0;
+  position: fixed;
+  width: 100%;
+  background-color: #252839;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0 4%;
+  padding: 0 4%;
+  z-index: 10;
+  border-bottom: solid 2px #f6ee86;
+  margin-top: -1px;
 }
 
 .logo-container {
@@ -22,7 +29,7 @@
 .underline {
   width: 100;
   height: 2px;
-  background: #f6ee86;
+  background: #252839;
 }
 
 @media (max-width: 430px) {

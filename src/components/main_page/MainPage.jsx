@@ -5,6 +5,7 @@ import Navbar from "../navbar/Navbar";
 import CreateNotes from "../create_notes/CreateNotes";
 import ListNotes from "../list_notes/ListNotes";
 import ListArchive from "../list_notes/ListArchive";
+import { IoIosAddCircle } from "react-icons/io";
 
 // Data
 import { showFormattedDate } from "../../utils/index";
@@ -141,7 +142,12 @@ class MainPage extends React.Component {
     return (
       <>
         <Navbar onSearchNotes={this.onSearchNotes} />
-        <CreateNotes onAddNote={this.onAddNote} />
+        <div className="create-note__button">
+          <button>
+            Create Notes <IoIosAddCircle className="create-note__add-icon" />
+          </button>
+        </div>
+        {/* <CreateNotes onAddNote={this.onAddNote} /> */}
         <ListNotes
           notes={this.state.notes}
           searchTerm={this.state.searchTerm}
