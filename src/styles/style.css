@@ -132,6 +132,7 @@ textarea::placeholder {
 }
 
 .note-item__delete-button,
+.note-item__show-button,
 .note-item__archive-button {
   display: block;
   width: 100%;
@@ -155,12 +156,21 @@ textarea::placeholder {
   transition: 0.2s;
 }
 
+.note-item__show-button {
+  color: #a2ddfd;
+  transition: 0.2s;
+}
+
 .note-item__archive-button:hover {
   color: #95f14a;
 }
 
 .note-item__delete-button:hover {
   color: #f80c0c;
+}
+
+.note-item__show-button:hover {
+  color: #33b8ff;
 }
 
 @media only screen and (min-width: 500px) {

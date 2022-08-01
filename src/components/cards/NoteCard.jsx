@@ -40,16 +40,10 @@ const NoteCard = ({
       </div>
       <div className="note-item__action">
         <button
-          className="note-item__delete-button"
+          className="note-item__show-button"
           onClick={() => onDeleteNotes(note.id)}
         >
-          Delete
-        </button>
-        <button
-          className="note-item__archive-button"
-          onClick={() => setArchived(note.id)}
-        >
-          {setTitleArchivedButton}
+          Show
         </button>
       </div>
     </div>

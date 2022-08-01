@@ -59,12 +59,20 @@ class CreateNotes extends React.Component {
   }
 
   render() {
+    console.log(this.props.isShowForm);
+
     if (this.state.charLimit - this.state.title.length <= 0) {
       this.onAlert();
     }
 
     return (
-      <div className="notes-form-container">
+      <div
+        className={
+          this.props.isShowForm
+            ? "notes-form-container active"
+            : "notes-form-container"
+        }
+      >
         <div className="header-form">
           <h3 className="component-title">Buat Catatan</h3>
           <p>

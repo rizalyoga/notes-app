@@ -17,6 +17,8 @@ class MainPage extends React.Component {
     this.state = {
       notes: [],
       searchTerm: "",
+      isShowForm: false,
+      isShowModal: false,
     };
 
     // Bind function
@@ -26,6 +28,8 @@ class MainPage extends React.Component {
     this.onUndoArchived = this.onUndoArchived.bind(this);
     this.onAddNote = this.onAddNote.bind(this);
     this.onUpdateData = this.onUpdateData.bind(this);
+    this.onShowCreateForm = this.onShowCreateForm.bind(this);
+    this.onShowModalNote = this.onShowModalNote.bind(this);
   }
 
   componentDidMount() {
@@ -138,16 +142,37 @@ class MainPage extends React.Component {
     // });
   }
 
+  // Function for show Form
+  onShowCreateForm() {
+    this.setState((prevState) => {
+      return {
+        isShowForm: !prevState.isShowForm,
+      };
+    });
+  }
+
+  // Function for show modal detail note
+  onShowModalNote() {
+    this.setState((prevState) => {
+      return {
+        isShowModal: !prevState.isShowModal,
+      };
+    });
+  }
+
   render() {
     return (
       <>
         <Navbar onSearchNotes={this.onSearchNotes} />
         <div className="create-note__button">
-          <button>
+          <button onClick={this.onShowCreateForm}>
             Create Notes <IoIosAddCircle className="create-note__add-icon" />
           </button>
         </div>
-        {/* <CreateNotes onAddNote={this.onAddNote} /> */}
+        <CreateNotes
+          onAddNote={this.onAddNote}
+          isShowForm={this.state.isShowForm}
+        />
         <ListNotes
           notes={this.state.notes}
           searchTerm={this.state.searchTerm}
