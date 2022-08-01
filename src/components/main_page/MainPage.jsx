@@ -5,6 +5,9 @@ import Navbar from "../navbar/Navbar";
 import CreateNotes from "../create_notes/CreateNotes";
 import ListNotes from "../list_notes/ListNotes";
 import ListArchive from "../list_notes/ListArchive";
+import ModalNotes from "../ModalNotes/ModalNotes";
+
+// Icon
 import { IoIosAddCircle } from "react-icons/io";
 
 // Data
@@ -19,6 +22,7 @@ class MainPage extends React.Component {
       searchTerm: "",
       isShowForm: false,
       isShowModal: false,
+      selectedNote: {},
     };
 
     // Bind function
@@ -30,6 +34,7 @@ class MainPage extends React.Component {
     this.onUpdateData = this.onUpdateData.bind(this);
     this.onShowCreateForm = this.onShowCreateForm.bind(this);
     this.onShowModalNote = this.onShowModalNote.bind(this);
+    this.onSelectNote = this.onSelectNote.bind(this);
   }
 
   componentDidMount() {
@@ -124,22 +129,7 @@ class MainPage extends React.Component {
 
     localStorage.setItem("notesData", JSON.stringify(notesData));
     this.onUpdateData();
-
-    // save data just in memmory
-    // this.setState((prevState) => {
-    //   return {
-    //     notes: [
-    //       ...prevState.notes,
-    //       {
-    //         id: +new Date(),
-    //         title: titleNote,
-    //         body: bodyNote,
-    //         archived: false,
-    //         createdAt: new Date().toString(),
-    //       },
-    //     ],
-    //   };
-    // });
+    this.onShowCreateForm();
   }
 
   // Function for show Form
@@ -160,9 +150,28 @@ class MainPage extends React.Component {
     });
   }
 
+  // Function for show modal detail note
+  onSelectNote(id) {
+    this.setState(() => {
+      const dataNoteSelected = this.state.notes.filter(
+        (note) => note.id === id
+      );
+
+      return {
+        selectedNote: dataNoteSelected,
+      };
+    });
+  }
+
   render() {
     return (
       <>
+        {this.state.isShowModal && (
+          <ModalNotes
+            setIsOpen={this.onShowModalNote}
+            selectedNote={this.state.selectedNote}
+          />
+        )}
         <Navbar onSearchNotes={this.onSearchNotes} />
         <div className="create-note__button">
           <button onClick={this.onShowCreateForm}>
@@ -179,6 +188,8 @@ class MainPage extends React.Component {
           dateFormat={showFormattedDate}
           onArchived={this.onArchived}
           onDeleteNotes={this.onDeleteNotes}
+          onShowModalNote={this.onShowModalNote}
+          onSelectNote={this.onSelectNote}
         />
         <ListArchive
           notes={this.state.notes}
@@ -186,6 +197,8 @@ class MainPage extends React.Component {
           dateFormat={showFormattedDate}
           onUndoArchived={this.onUndoArchived}
           onDeleteNotes={this.onDeleteNotes}
+          onShowModalNote={this.onShowModalNote}
+          onSelectNote={this.onSelectNote}
         />
       </>
     );

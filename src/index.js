@@ -1,6 +1,6 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import MainPage from "./components/main_page/MainPage";
+// import MainPage from "./components/main_page/MainPage";
 import Router from "./routes/Route";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 

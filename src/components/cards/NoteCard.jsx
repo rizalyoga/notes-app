@@ -10,6 +10,8 @@ const NoteCard = ({
   onDeleteNotes,
   setArchived,
   setTitleArchivedButton,
+  onShowModalNote,
+  onSelectNote,
 }) => {
   const [show, setShow] = useState(false);
 
@@ -41,7 +43,10 @@ const NoteCard = ({
       <div className="note-item__action">
         <button
           className="note-item__show-button"
-          onClick={() => onDeleteNotes(note.id)}
+          onClick={() => {
+            onShowModalNote();
+            onSelectNote(note.id);
+          }}
         >
           Show
         </button>

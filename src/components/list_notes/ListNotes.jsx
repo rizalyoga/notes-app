@@ -11,16 +11,19 @@ const ListNotes = ({
   dateFormat,
   onArchived,
   onDeleteNotes,
+  onShowModalNote,
+  onSelectNote,
 }) => {
   const dataNotes = notes.filter(
     (note) =>
       !note.archived &&
       note.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
   return (
     <div className="list-notes-container">
       <h3 className="component-title">Catatan Aktif</h3>
-      {dataNotes.length < 1 && <EmptyData />}
+      {!dataNotes.length && <EmptyData />}
       <div className="notes-list-container">
         {dataNotes.map((note) => (
           <NoteCard
@@ -30,6 +33,8 @@ const ListNotes = ({
             setTitleArchivedButton={"Archive"}
             onDeleteNotes={onDeleteNotes}
             key={note.id}
+            onShowModalNote={onShowModalNote}
+            onSelectNote={onSelectNote}
           />
         ))}
       </div>

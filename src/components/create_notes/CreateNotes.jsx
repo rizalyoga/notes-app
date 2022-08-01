@@ -59,8 +59,6 @@ class CreateNotes extends React.Component {
   }
 
   render() {
-    console.log(this.props.isShowForm);
-
     if (this.state.charLimit - this.state.title.length <= 0) {
       this.onAlert();
     }
