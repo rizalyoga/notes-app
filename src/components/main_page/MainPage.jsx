@@ -5,6 +5,10 @@ import Navbar from "../navbar/Navbar";
 import CreateNotes from "../create_notes/CreateNotes";
 import ListNotes from "../list_notes/ListNotes";
 import ListArchive from "../list_notes/ListArchive";
+import ModalNotes from "../modal_notes/ModalNotes";
+
+// Icon
+import { IoIosAddCircle } from "react-icons/io";
 
 // Data
 import { showFormattedDate } from "../../utils/index";
@@ -16,6 +20,9 @@ class MainPage extends React.Component {
     this.state = {
       notes: [],
       searchTerm: "",
+      isShowForm: false,
+      isShowModal: false,
+      selectedNote: {},
     };
 
     // Bind function
@@ -25,6 +32,9 @@ class MainPage extends React.Component {
     this.onUndoArchived = this.onUndoArchived.bind(this);
     this.onAddNote = this.onAddNote.bind(this);
     this.onUpdateData = this.onUpdateData.bind(this);
+    this.onShowCreateForm = this.onShowCreateForm.bind(this);
+    this.onShowModalNote = this.onShowModalNote.bind(this);
+    this.onSelectNote = this.onSelectNote.bind(this);
   }
 
   componentDidMount() {
@@ -119,35 +129,67 @@ class MainPage extends React.Component {
 
     localStorage.setItem("notesData", JSON.stringify(notesData));
     this.onUpdateData();
+    this.onShowCreateForm();
+  }
 
-    // save data just in memmory
-    // this.setState((prevState) => {
-    //   return {
-    //     notes: [
-    //       ...prevState.notes,
-    //       {
-    //         id: +new Date(),
-    //         title: titleNote,
-    //         body: bodyNote,
-    //         archived: false,
-    //         createdAt: new Date().toString(),
-    //       },
-    //     ],
-    //   };
-    // });
+  // Function for show Form
+  onShowCreateForm() {
+    this.setState((prevState) => {
+      return {
+        isShowForm: !prevState.isShowForm,
+      };
+    });
+  }
+
+  // Function for show modal detail note
+  onShowModalNote() {
+    this.setState((prevState) => {
+      return {
+        isShowModal: !prevState.isShowModal,
+      };
+    });
+  }
+
+  // Function for show modal detail note
+  onSelectNote(id) {
+    this.setState(() => {
+      const dataNoteSelected = this.state.notes.filter(
+        (note) => note.id === id
+      );
+
+      return {
+        selectedNote: dataNoteSelected,
+      };
+    });
   }
 
   render() {
     return (
       <>
+        {this.state.isShowModal && (
+          <ModalNotes
+            setIsOpen={this.onShowModalNote}
+            selectedNote={this.state.selectedNote}
+          />
+        )}
         <Navbar onSearchNotes={this.onSearchNotes} />
-        <CreateNotes onAddNote={this.onAddNote} />
+        <div className="create-note__button">
+          <button onClick={this.onShowCreateForm}>
+            Create Notes <IoIosAddCircle className="create-note__add-icon" />
+          </button>
+        </div>
+        <CreateNotes
+          onAddNote={this.onAddNote}
+          isShowForm={this.state.isShowForm}
+        />
         <ListNotes
           notes={this.state.notes}
           searchTerm={this.state.searchTerm}
           dateFormat={showFormattedDate}
           onArchived={this.onArchived}
           onDeleteNotes={this.onDeleteNotes}
+          onShowModalNote={this.onShowModalNote}
+          onSelectNote={this.onSelectNote}
         />
         <ListArchive
           notes={this.state.notes}
@@ -155,6 +197,8 @@ class MainPage extends React.Component {
           dateFormat={showFormattedDate}
           onUndoArchived={this.onUndoArchived}
           onDeleteNotes={this.onDeleteNotes}
+          onShowModalNote={this.onShowModalNote}
+          onSelectNote={this.onSelectNote}
         />
       </>
     );

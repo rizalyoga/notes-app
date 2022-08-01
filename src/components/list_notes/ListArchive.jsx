@@ -11,6 +11,8 @@ const ListArchive = ({
   dateFormat,
   onUndoArchived,
   onDeleteNotes,
+  onShowModalNote,
+  onSelectNote,
 }) => {
   const dataNotes = notes?.filter(
     (note) =>
@@ -19,9 +21,9 @@ const ListArchive = ({
   );
 
   return (
-    <div className="list-notes-container">
+    <div className="list-notes-container list-archive">
       <h3 className="component-title">Catatan Arsip</h3>
-      {dataNotes.length < 1 && <EmptyData />}
+      {!dataNotes.length && <EmptyData />}
       <div className="notes-list-container">
         {dataNotes?.map((note) => (
           <NoteCard
@@ -31,6 +33,8 @@ const ListArchive = ({
             setTitleArchivedButton={"UnArchive"}
             onDeleteNotes={onDeleteNotes}
             key={note.id}
+            onShowModalNote={onShowModalNote}
+            onSelectNote={onSelectNote}
           />
         ))}
       </div>

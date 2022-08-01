@@ -64,7 +64,13 @@ class CreateNotes extends React.Component {
     }
 
     return (
-      <div className="notes-form-container">
+      <div
+        className={
+          this.props.isShowForm
+            ? "notes-form-container active"
+            : "notes-form-container"
+        }
+      >
         <div className="header-form">
           <h3 className="component-title">Buat Catatan</h3>
           <p>

@@ -1,6 +1,16 @@
 .notes-form-container {
-  margin: 0 12%;
-  margin-top: 40px;
+  padding: 0 12%;
+  padding-top: 180px;
+  margin-bottom: -100px;
+  display: none;
+  position: fixed;
+  background: #252839;
+  z-index: 10;
+  width: 100%;
+}
+
+.active {
+  display: block;
 }
 
 .header-form {
@@ -11,6 +21,7 @@
 .notes-form-container form {
   display: flex;
   flex-direction: column;
+  border-bottom: 6px solid #f6ee86;
 }
 
 .submit-button {
@@ -23,4 +34,13 @@
   background: #fff;
   color: #252839;
   font-weight: bold;
+}
+
+@media (max-width: 532px) {
+  .notes-form-container {
+    padding-top: 150px !important;
+    padding-bottom: -120px !important;
+    width: 100%;
+    padding: 0 8%;
+  }
 }

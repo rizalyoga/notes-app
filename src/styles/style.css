@@ -31,11 +31,44 @@ textarea::placeholder {
   color: #a2ddfd;
 }
 
+.create-note__button {
+  width: 100%;
+  padding: 20px 12%;
+  margin-top: 64px;
+  position: fixed;
+  background: #252839;
+  z-index: 20;
+}
+
+.create-note__button button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 100%;
+  padding: 10px;
+  outline: none;
+  cursor: pointer;
+}
+
+.create-note__add-icon {
+  font-size: 1.4rem;
+  color: #a2ddfd;
+}
+
+.create-note__add-icon:hover {
+  color: #f859c3;
+}
+
 .notes-list-container {
   grid-template-columns: repeat(4, 1fr);
   display: grid;
   gap: 16px;
   margin-top: 20px;
+}
+
+.list-archive {
+  margin-top: 50px;
 }
 
 .notes-list__empty-message {
@@ -50,7 +83,6 @@ textarea::placeholder {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  /* max-width: 22%; */
   min-height: 250px;
   margin-bottom: 10px;
 }
@@ -58,14 +90,31 @@ textarea::placeholder {
 .note-item__content {
   padding: 12px;
   flex: 1;
+  overflow: hidden;
+}
+
+.note-item__title-container {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
 }
 
 .note-item__title {
-  text-overflow: ellipsis;
   overflow: hidden;
+  text-overflow: ellipsis;
   white-space: nowrap;
   margin-bottom: 4px;
   color: #f6ee86;
+}
+
+.note-item__menu-toggle {
+  cursor: pointer;
+  padding: 0 2px;
+  font-size: 1.4rem;
+}
+
+.note-item__menu-toggle:hover {
+  color: #b3dae0;
 }
 
 .note-item__date {
@@ -76,6 +125,10 @@ textarea::placeholder {
 
 .note-item__body {
   font-size: 14px;
+  display: -webkit-box;
+  -webkit-line-clamp: 8;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .note-item__action {
@@ -83,6 +136,7 @@ textarea::placeholder {
 }
 
 .note-item__delete-button,
+.note-item__show-button,
 .note-item__archive-button {
   display: block;
   width: 100%;
@@ -106,12 +160,21 @@ textarea::placeholder {
   transition: 0.2s;
 }
 
+.note-item__show-button {
+  color: #a2ddfd;
+  transition: 0.2s;
+}
+
 .note-item__archive-button:hover {
   color: #95f14a;
 }
 
 .note-item__delete-button:hover {
   color: #f80c0c;
+}
+
+.note-item__show-button:hover {
+  color: #33b8ff;
 }
 
 @media only screen and (min-width: 500px) {
@@ -157,11 +220,23 @@ textarea::placeholder {
   .note-item {
     width: 100%;
   }
+
+  .create-note__button {
+    padding: 20px 8%;
+    margin-top: 64px;
+  }
+
+  .list-notes-container {
+    margin-top: 180px !important;
+  }
+
+  .list-archive {
+    margin-top: 50px !important;
+  }
 }
 
 @media (max-width: 532px) {
-  .list-notes-container,
-  .notes-form-container {
+  .list-notes-container {
     margin: 0 8%;
     margin-top: 30px;
     margin-bottom: 20px;
