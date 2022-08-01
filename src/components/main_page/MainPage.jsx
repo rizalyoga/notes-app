@@ -5,7 +5,7 @@ import Navbar from "../navbar/Navbar";
 import CreateNotes from "../create_notes/CreateNotes";
 import ListNotes from "../list_notes/ListNotes";
 import ListArchive from "../list_notes/ListArchive";
-import ModalNotes from "../ModalNotes/ModalNotes";
+import ModalNotes from "../modal_notes/ModalNotes";
 
 // Icon
 import { IoIosAddCircle } from "react-icons/io";

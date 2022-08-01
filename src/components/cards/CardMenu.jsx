@@ -28,15 +28,15 @@ const CardMenu = ({
     onShowMenu();
   };
 
-  const onEdit = () => {
-    onShowMenu();
-  };
+  // const onEdit = () => {
+  //   onShowMenu();
+  // };
 
   return (
     <div className={showMenu()}>
       <ul>
         <li onClick={onArchived}>{archiveStatus ? "UnArchive" : "Archive"}</li>
-        <li onClick={onEdit}>Edit</li>
+        {/* <li onClick={onEdit}>Edit</li> */}
         <li onClick={onDelete}>Delete</li>
       </ul>
     </div>

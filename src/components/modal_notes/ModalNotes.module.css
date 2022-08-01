@@ -1,5 +1,5 @@
 .darkBG {
-  background-color: rgba(0, 0, 0, 0.911);
+  background-color: #252839c0;
   width: 100vw;
   height: 100vh;
   z-index: 60;
@@ -139,7 +139,7 @@
 
 .closeBtn:hover {
   box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
-  background: #f859c3;
+  background: #eb196e;
   color: white;
 }
 

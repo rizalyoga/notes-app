@@ -56,6 +56,10 @@ textarea::placeholder {
   color: #a2ddfd;
 }
 
+.create-note__add-icon:hover {
+  color: #f859c3;
+}
+
 .notes-list-container {
   grid-template-columns: repeat(4, 1fr);
   display: grid;
@@ -232,8 +236,7 @@ textarea::placeholder {
 }
 
 @media (max-width: 532px) {
-  .list-notes-container,
-  .notes-form-container {
+  .list-notes-container {
     margin: 0 8%;
     margin-top: 30px;
     margin-bottom: 20px;
